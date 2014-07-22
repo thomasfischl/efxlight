@@ -32,6 +32,10 @@ public class FXMLAnalyser {
     return controllerElements;
   }
 
+  public Map<String, String> getControllerActions() {
+    return controllerActions;
+  }
+
   public void parseFXML(IFile fxmlFile) throws IOException, XMLStreamException {
     clearData();
 

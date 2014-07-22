@@ -81,6 +81,9 @@ public class FXMLControllerUpdater {
     Map<String, String> controlFields = new HashMap<>(analyser.getControllerElements());
     updateFields(controlFields, type);
 
+    Map<String, String> controlActions = new HashMap<>(analyser.getControllerActions());
+    updateActions(controlActions, type);
+
     updateConstructor(type);
   }
 
@@ -136,9 +139,55 @@ public class FXMLControllerUpdater {
     }
   }
 
+  private void updateActions(Map<String, String> controlActions, IType type) throws JavaModelException {
+    Iterator<Entry<String, String>> it = controlActions.entrySet().iterator();
+
+    IMethod[] methods = type.getMethods();
+    while (it.hasNext()) {
+      Entry<String, String> entry = it.next();
+
+      for (IMethod method : methods) {
+        String methodName = normalizeMethodName(entry.getValue());
+        if (methodName.equals(method.getElementName())) {
+          it.remove();
+          break;
+        }
+      }
+    }
+
+    IMethod lastMethod = null;
+    if (methods != null && methods.length > 0) {
+      lastMethod = methods[methods.length - 1];
+    }
+    for (Entry<String, String> entry : controlActions.entrySet()) {
+      String methodCode = null;
+      String methodName = normalizeMethodName(entry.getValue());
+      if ("onAction".equals(entry.getKey())) {
+        methodCode = "@FXML private void " + methodName + "(ActionEvent e) { \n //TODO implement me \n}";
+      }
+
+      if (methodCode != null) {
+        lastMethod = type.createMethod(methodCode, lastMethod, true, monitor);
+      } else {
+        System.out.println("No method template for type '" + entry.getKey() + "' available.");
+      }
+    }
+  }
+
+  private String normalizeMethodName(String methodName) {
+    if (methodName.charAt(0) == '#') {
+      methodName = methodName.substring(1);
+    }
+
+    if (Character.isUpperCase(methodName.charAt(0))) {
+      methodName = Character.toLowerCase(methodName.charAt(0)) + methodName.substring(1);
+    }
+    return methodName;
+  }
+
   private void addImports() throws JavaModelException {
     String[] imports = { "javafx.fxml.FXML", "java.lang.*", "java.util.*", "javafx.geometry.*", "javafx.scene.control.*",
-        "javafx.scene.layout.*", "javafx.scene.paint.*" };
+        "javafx.scene.layout.*", "javafx.scene.paint.*", "javafx.event.*" };
     for (String importPackage : imports) {
       cu.createImport(importPackage, null, monitor);
     }
