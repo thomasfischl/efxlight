@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.fxml"
+            id="com.github.thomasfischl.efxlight.contribution.fxml">
+         <menu
+               label="eFX Light"
+               path="additions"
+               id="com.github.thomasfischl.efxlight.menu1">
+            <separator name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Update FX Controller"
+               class="com.github.thomasfischl.efxlight.popup.actions.UpdateControllerAction"
+               menubarPath="com.github.thomasfischl.efxlight.menu1/group1"
+               enablesFor="1"
+               id="com.github.thomasfischl.efxlight.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+   
+   <extension point="org.eclipse.ui.newWizards">
+      <wizard
+            name="FXML-File"
+            icon="icons/fxml-small.png"
+            category="org.eclipse.jdt.ui.java"
+            class="com.github.thomasfischl.efxlight.wizards.NewFXMLFileCreationWizard"
+            id="com.github.thomasfischl.efxlight.wizards.NewFXMLFileCreationWizard">
+         <keywordReference id="org.eclipse.jdt.ui.wizards.java"/>
+      </wizard>
+	</extension>
+
+</plugin>
