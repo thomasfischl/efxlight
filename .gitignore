@@ -213,3 +213,23 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+#eclipse
+**/.metadata/**
+.recommenders/**
+
+
+#custom
+examples/org.eclipse*/**
+examples/.p2/**
+examples/config.ini
+examples/dev.properties
