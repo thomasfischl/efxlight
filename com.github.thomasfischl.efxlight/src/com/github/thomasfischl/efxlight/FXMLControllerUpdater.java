@@ -203,8 +203,11 @@ public class FXMLControllerUpdater {
           org.run(selection);
 
         } catch (PartInitException | JavaModelException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
+          String name = "unkown";
+          if (cu != null) {
+            name = cu.getElementName();
+          }
+          LogFacade.logError("An error occurs during organize imports of class '" + name + "'.", e);
         }
       }
     };

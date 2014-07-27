@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -14,8 +15,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 import com.github.thomasfischl.efxlight.DialogUtil;
-
-
+import com.github.thomasfischl.efxlight.LogFacade;
 
 public class NewFXMLFileCreationWizard extends BasicNewResourceWizard {
 
@@ -66,9 +66,10 @@ public class NewFXMLFileCreationWizard extends BasicNewResourceWizard {
       sb.append("</fx:root>");
 
       file.setContents(new ByteArrayInputStream(sb.toString().getBytes()), true, true, null);
-    } catch (CoreException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
+    } catch (CoreException e) {
+      LogFacade.logError(e);
+      MessageDialog.openError(getShell(), "Error", e.getMessage());
+      return false;
     }
 
     selectAndReveal(file);

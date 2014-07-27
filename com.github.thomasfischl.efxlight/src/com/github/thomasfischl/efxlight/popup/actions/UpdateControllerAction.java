@@ -4,6 +4,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.widgets.Shell;
@@ -12,6 +13,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.github.thomasfischl.efxlight.FXMLAnalyser;
 import com.github.thomasfischl.efxlight.FXMLControllerUpdater;
+import com.github.thomasfischl.efxlight.LogFacade;
 
 public class UpdateControllerAction implements IObjectActionDelegate {
 
@@ -34,6 +36,8 @@ public class UpdateControllerAction implements IObjectActionDelegate {
   public void run(IAction action) {
     IProgressMonitor monitor = new NullProgressMonitor();
 
+    LogFacade.logInfo("Start updating FXML controller.");
+
     try {
       if (selection instanceof TreeSelection) {
         Object element = ((TreeSelection) selection).getFirstElement();
@@ -50,12 +54,9 @@ public class UpdateControllerAction implements IObjectActionDelegate {
         }
       }
     } catch (Exception e) {
-      // TODO: handle exception
-      e.printStackTrace();
+      LogFacade.logError("An error occurs during updating FXML controller.", e);
+      MessageDialog.openError(shell, "Error", e.getMessage());
     }
-
-    // MessageDialog.openInformation(shell, "Eclipse Fx Light",
-    // "Test was executed.");
   }
 
 }
