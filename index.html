@@ -37,20 +37,44 @@
           <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to eFX - Light</h3>
 
-<p>eFX - Light is a lightweight Java FX plugin for eclipse. This plugin contains useful extentions to increase your producativity with Java FX.</p>
+<p>eFX - Light is a lightweight JavaFX plug-in for eclipse. This plug-in contains useful extentions to increase your productivity with Java FX. This plug-in does not contain a fully featured support for JavaFX in Eclipse. If you are looking for this, please visit <a href="http://www.eclipse.org/efxclipse/index.html">e(fx)clipse</a>. The goal of this plug-in is to support developers to reduce common tasks, which are needed to work on plain JavaFX.</p>
+
+<p>eFX-Light is in a very early stage and should not be used for production.</p>
+
+<p>I hope you will have fun with the plug-in. If you have cool ideas for improvments or extends, please write an issue on github.</p>
+
 
 <h3><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Start using eFX-Light</h3>
 <p>
-  Install the eFX-Light plugin in your Eclipse. 
+  Install the eFX-Light plug-in in your Eclipse. 
   <br/> Update Site: <a href="./updatesite">http://thomasfischl.github.io/efxlight/updatesite</a>
 
   <img src="./images/updatesite.png" />
 </p>
 
 <h3><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>eFX-Light in Action</h3>
-<p>Open the context menu for a JavaFX file in your project and click 'Update FX Controller'</p>
+<p>This sections shows a quick feature overview.</p>
 
+<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Prepare Java Project </h4>
+<p>The Java project needs a dependency to the JavaFX runtime. The runtime is located in the JRE or JDK install directory.</p>
+<img src="./images/addjfxrt.png" />
+
+<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Create New FXML File</h4>
+<p>Create a new FXML file in your java project.</p>
+<img src="./images/newwizard.png" />
+
+<p>If the JavaFX Scene Builder is installed on the machine, this program will be opened after the new file was created.</p>
+<img src="./images/scenebuilder.png" />
+
+<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Create/Update the JavaFX Controller</h4>
+<p>Open the context menu on the FXML file in your project and click 'Update FX Controller'.</p>
 <img src="./images/contextmenu.png" />
+<p>After the create/update process is finished, the controller class opens in a Java editor.</p>
+<img src="./images/javacontroller.png" />
+
+<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Preview</h4>
+<p>To get a quick preview of the JavaFx Screen open the context menu on the FXML file and click 'Preview'. This will open a new JavaFX window with the content of the file.</p>
+<img src="./images/preview.png" />
 
         </article>
       </div>
