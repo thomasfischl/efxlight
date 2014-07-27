@@ -11,15 +11,21 @@
                label="eFX Light"
                path="additions"
                id="com.github.thomasfischl.efxlight.menu1">
-            <separator name="group1">
-            </separator>
+            <separator name="group1"></separator>
          </menu>
          <action
                label="Update FX Controller"
                class="com.github.thomasfischl.efxlight.popup.actions.UpdateControllerAction"
                menubarPath="com.github.thomasfischl.efxlight.menu1/group1"
                enablesFor="1"
-               id="com.github.thomasfischl.efxlight.newAction">
+               id="com.github.thomasfischl.efxlight.updateControllerAction">
+         </action>
+         <action
+               label="Preview"
+               class="com.github.thomasfischl.efxlight.popup.actions.FXMLPreviewAction"
+               menubarPath="com.github.thomasfischl.efxlight.menu1/group1"
+               enablesFor="1"
+               id="com.github.thomasfischl.efxlight.previewAction">
          </action>
       </objectContribution>
    </extension>
