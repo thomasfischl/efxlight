@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+
+<fx:root prefHeight="581.0" prefWidth="589.0" type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <GridPane prefHeight="406.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="471.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
+          <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
+          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Label text="Name:" />
+            <Label text="Search Query" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Label text="Name Query" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+               <children>
+                  <ListView fx:id="lbSearchQueryList" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ListView>
+                  <VBox prefHeight="0.0" prefWidth="30.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Button fx:id="btnSearchQueryAdd" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onSearchQueryAdd" prefHeight="30.0" prefWidth="30.0" text="+">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnSearchQueryRemove" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onSearchQueryRemove" text="-" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnSearchQueryUp" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onSearchQueryUp" prefHeight="30.0" prefWidth="30.0" text="U">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnSearchQueryDown" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onSearchQueryDown" prefHeight="30.0" prefWidth="30.0" text="D" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="10">
+               <children>
+                  <ListView fx:id="lvNameQueryList" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox>
+                     <children>
+                        <Button fx:id="btnNameQueryAdd" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onNameQueryAdd" text="+">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnNameQueryRemove" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onNameQueryRemove" text="-">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnNameQueryUp" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onNameQueryUp" text="U">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnNameQueryDown" maxHeight="30.0" maxWidth="30.0" mnemonicParsing="false" onAction="#onNameQueryDown" text="D">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label text="Query:" GridPane.rowIndex="3" />
+            <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+            <HBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="tfSearchQueryQuery" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnSearchQueryTest" mnemonicParsing="false" onAction="#onSearchQueryTest" text="Test" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Label text="Node Query:" GridPane.rowIndex="7" />
+            <TextField fx:id="tfNameQueryNodeQuery" GridPane.columnIndex="1" GridPane.rowIndex="7" HBox.hgrow="ALWAYS" />
+            <Label text="Text Query" GridPane.rowIndex="8" />
+            <TextField fx:id="tfNameQueryTextQuery" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+               <children>
+                  <Label HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnNameQueryTest" mnemonicParsing="false" onAction="#onNameQueryTest" text="Test" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="12" GridPane.valignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Add" />
+                  <Button mnemonicParsing="false" text="Update">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Clear" />
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </GridPane>
+   </children>
+</fx:root>
