@@ -1,7 +1,9 @@
 package com.github.thomasfischl.efxlight;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -75,13 +77,13 @@ public class FXMLControllerUpdater {
       if (baseClass.contains(".")) {
         baseClass = baseClass.substring(baseClass.lastIndexOf(".") + 1);
       }
-      type = cu.createType("public abstract class " + className + " extends " + baseClass + " {}", null, true, monitor);
+      type = cu.createType("public class " + className + " extends " + baseClass + " {}", null, true, monitor);
     }
 
     Map<String, String> controlFields = new HashMap<>(analyser.getControllerElements());
     updateFields(controlFields, type);
 
-    Map<String, String> controlActions = new HashMap<>(analyser.getControllerActions());
+    List<FXMLListener> controlActions = new ArrayList<>(analyser.getControllerActions());
     updateActions(controlActions, type);
 
     updateConstructor(type);
@@ -139,16 +141,15 @@ public class FXMLControllerUpdater {
     }
   }
 
-  private void updateActions(Map<String, String> controlActions, IType type) throws JavaModelException {
-    Iterator<Entry<String, String>> it = controlActions.entrySet().iterator();
+  private void updateActions(List<FXMLListener> controlActions, IType type) throws JavaModelException {
+    Iterator<FXMLListener> it = controlActions.iterator();
 
     IMethod[] methods = type.getMethods();
     while (it.hasNext()) {
-      Entry<String, String> entry = it.next();
+      FXMLListener entry = it.next();
 
       for (IMethod method : methods) {
-        String methodName = normalizeMethodName(entry.getValue());
-        if (methodName.equals(method.getElementName())) {
+        if (entry.getNormalizedName().equals(method.getElementName())) {
           it.remove();
           break;
         }
@@ -159,30 +160,19 @@ public class FXMLControllerUpdater {
     if (methods != null && methods.length > 0) {
       lastMethod = methods[methods.length - 1];
     }
-    for (Entry<String, String> entry : controlActions.entrySet()) {
+    for (FXMLListener entry : controlActions) {
       String methodCode = null;
-      String methodName = normalizeMethodName(entry.getValue());
-      if ("onAction".equals(entry.getKey())) {
+      String methodName = entry.getNormalizedName();
+      if ("onAction".equals(entry.getMethodType())) {
         methodCode = "@FXML private void " + methodName + "(ActionEvent e) { \n //TODO implement me \n}";
       }
 
       if (methodCode != null) {
         lastMethod = type.createMethod(methodCode, lastMethod, true, monitor);
       } else {
-        System.out.println("No method template for type '" + entry.getKey() + "' available.");
+        System.out.println("No method template for type '" + entry.getMethodType() + "' available.");
       }
     }
-  }
-
-  private String normalizeMethodName(String methodName) {
-    if (methodName.charAt(0) == '#') {
-      methodName = methodName.substring(1);
-    }
-
-    if (Character.isUpperCase(methodName.charAt(0))) {
-      methodName = Character.toLowerCase(methodName.charAt(0)) + methodName.substring(1);
-    }
-    return methodName;
   }
 
   private void addImports() throws JavaModelException {

@@ -2,7 +2,9 @@ package com.github.thomasfischl.efxlight;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.stream.XMLInputFactory;
@@ -16,12 +18,12 @@ public class FXMLAnalyser {
 
   private String baseClass;
   private Map<String, String> controllerElements;
-  private Map<String, String> controllerActions;
+  private List<FXMLListener> controllerActions;
 
   public void clearData() {
     baseClass = null;
     controllerElements = new HashMap<String, String>();
-    controllerActions = new HashMap<String, String>();
+    controllerActions = new ArrayList<FXMLListener>();
   }
 
   public String getBaseClass() {
@@ -32,7 +34,7 @@ public class FXMLAnalyser {
     return controllerElements;
   }
 
-  public Map<String, String> getControllerActions() {
+  public List<FXMLListener> getControllerActions() {
     return controllerActions;
   }
 
@@ -70,7 +72,7 @@ public class FXMLAnalyser {
           }
 
           if ("onAction".equals(attrName)) {
-            controllerActions.put("onAction", value);
+            controllerActions.add(new FXMLListener(value, "onAction"));
           }
         }
         break;
