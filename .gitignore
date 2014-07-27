@@ -12,5 +12,12 @@
 hs_err_pid*
 
 #eclipse
-.metadata/**
+**/.metadata/**
 .recommenders/**
+
+
+#custom
+examples/org.eclipse*/**
+examples/.p2/**
+examples/config.ini
+examples/dev.properties

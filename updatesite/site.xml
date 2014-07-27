@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.github.thomasfischl.efxlight.feature_0.0.1.201407271542.jar" id="com.github.thomasfischl.efxlight.feature" version="0.0.1.201407271542">
+      <category name="efxlight"/>
+   </feature>
+   <category-def name="efxlight" label="eFX - Light">
+      <description>
+         eFX - Light is a lightweight Java FX plugin for eclipse. This plugin contains useful extentions to increase your producativity with Java FX.
+      </description>
+   </category-def>
+</site>
