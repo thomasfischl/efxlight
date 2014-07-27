@@ -46,9 +46,16 @@ public class FXMLControllerUpdater {
     IJavaElement packageFolder = JavaCore.create(fxmlFile.getParent());
 
     IPackageFragmentRoot root = null;
-    for (IPackageFragmentRoot fragment : javaProject.getPackageFragmentRoots()) {
-      if ("src".equals(fragment.getElementName())) {
-        root = fragment;
+
+    if (packageFolder.getParent() instanceof IPackageFragmentRoot) {
+      root = (IPackageFragmentRoot) packageFolder.getParent();
+    }
+
+    if (root == null) {
+      for (IPackageFragmentRoot fragment : javaProject.getPackageFragmentRoots()) {
+        if ("src".equals(fragment.getElementName())) {
+          root = fragment;
+        }
       }
     }
 
@@ -187,6 +194,14 @@ public class FXMLControllerUpdater {
     CodeFormatter formatter = ToolFactory.createCodeFormatter(null);
     TextEdit formatEdit = formatter.format(CodeFormatter.K_COMPILATION_UNIT, cu.getSource(), 0, cu.getSource().length(), 0, null);
     cu.applyTextEdit(formatEdit, monitor);
+  }
+
+  public void save() throws JavaModelException, PartInitException {
+    cu.save(monitor, true);
+    IEditorPart editor = JavaUI.openInEditor(cu);
+    if (editor != null) {
+      editor.doSave(monitor);
+    }
   }
 
   public void organizeImports(Shell shell) {

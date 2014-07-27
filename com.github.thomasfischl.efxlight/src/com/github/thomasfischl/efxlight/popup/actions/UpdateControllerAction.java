@@ -36,7 +36,7 @@ public class UpdateControllerAction implements IObjectActionDelegate {
   public void run(IAction action) {
     IProgressMonitor monitor = new NullProgressMonitor();
 
-    LogFacade.logInfo("Start updating FXML controller.");
+//    LogFacade.logInfo("Start updating FXML controller.");
 
     try {
       if (selection instanceof TreeSelection) {
@@ -51,6 +51,7 @@ public class UpdateControllerAction implements IObjectActionDelegate {
           updater.updateClass(analyser);
           updater.organizeImports(shell);
           updater.formatCode();
+          updater.save();
         }
       }
     } catch (Exception e) {
