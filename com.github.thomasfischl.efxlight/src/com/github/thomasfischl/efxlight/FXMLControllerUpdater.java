@@ -81,7 +81,9 @@ public class FXMLControllerUpdater {
     IType type = cu.getType(className);
     if (!type.exists()) {
       String baseClass = analyser.getBaseClass();
-      if (baseClass.contains(".")) {
+      if (baseClass == null) {
+        baseClass = "Pane";
+      } else if (baseClass.contains(".")) {
         baseClass = baseClass.substring(baseClass.lastIndexOf(".") + 1);
       }
       type = cu.createType("public class " + className + " extends " + baseClass + " {}", null, true, monitor);
